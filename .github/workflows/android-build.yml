@@ -25,19 +25,17 @@ jobs:
         api-level: 33
         components: |
           platform-tools
-          build-tools;33.0.0
+          build-tools;33.0.2
+          platforms;android-33
+          extras;google;m2repository
+          extras;android;m2repository
 
-    - name: Install Gradle
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y gradle
-
-    - name: Build Debug APK
-      run: |
-        gradle --version
-        gradle assembleDebug
-      env:
-        ANDROID_HOME: ${{ env.ANDROID_SDK_ROOT }}
+    - name: Run Gradle assembleDebug (using Gradle Action)
+      uses: gradle/gradle-build-action@v2
+      with:
+        arguments: assembleDebug
+        # if you want to force a specific Gradle version, set gradle-version
+        # gradle-version: '7.4.2'
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
