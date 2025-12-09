@@ -21,20 +21,21 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    # 3️⃣ Installer Android SDK
+    # 3️⃣ Installer Android SDK components via sdkmanager
     - name: Install Android SDK components
-      uses: android-actions/setup-android@v2
+      env:
+        ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+      run: |
+        set -eux
+        yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
+        /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2" "extras;google;m2repository" "extras;android;m2repository"
+
+    # 4️⃣ Build APK debug using Gradle action (no gradlew required)
+    - name: Run Gradle assembleDebug (using Gradle Action)
+      uses: gradle/gradle-build-action@v2
       with:
-        # Supprimer api-level/components pour éviter le warning
-        # Le SDK par défaut suffit pour build
-
-    # 4️⃣ Donner les droits à gradlew
-    - name: Grant execute permission
-      run: chmod +x ./gradlew
-
-    # 5️⃣ Build APK debug
-    - name: Run Gradle assembleDebug
-      run: ./gradlew assembleDebug
+        arguments: assembleDebug
+        gradle-version: '7.5.1'
 
     # 6️⃣ Upload APK
     - name: Upload APK artifact
