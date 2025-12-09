@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.eyescroll"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.0"
+
+    // CameraX
+    implementation 'androidx.camera:camera-camera2:1.2.3'
+    implementation 'androidx.camera:camera-lifecycle:1.2.3'
+    implementation 'androidx.camera:camera-view:1.2.3'
+
+    // ML Kit Face Detection (used here as a working example for gaze estimation)
+    implementation 'com.google.mlkit:face-detection:16.1.5'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+
+    // Optional: Add MediaPipe dependencies if you choose to use Face Mesh instead
+    // See README for MediaPipe integration notes.
+}

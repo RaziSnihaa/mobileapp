@@ -1,0 +1,26 @@
+# Gradle
+.gradle/
+/build/
+
+# Android
+*.iml
+.idea/
+/local.properties
+/.gradle
+/captures
+.externalNativeBuild
+
+# Kotlin
+*.kotlin_module
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keystore
+*.jks
+*.keystore
+
+# Misc
+.gradle
+*/build/
