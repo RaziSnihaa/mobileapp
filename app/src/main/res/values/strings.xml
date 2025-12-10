@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EyeScroll</string>
+    <string name="accessibility_service_description">Scroll service for EyeScroll - allows automatic scrolling in other apps</string>
 </resources>

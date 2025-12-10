@@ -4,6 +4,6 @@
     android:accessibilityFeedbackType="feedbackGeneric"
     android:notificationTimeout="100"
     android:canRetrieveWindowContent="true"
-    android:description="Scroll service for EyeScroll"
+    android:description="@string/accessibility_service_description"
     android:accessibilityFlags="flagDefault"
     android:canPerformGestures="true" />
