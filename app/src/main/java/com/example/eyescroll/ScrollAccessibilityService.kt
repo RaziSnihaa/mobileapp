@@ -5,6 +5,7 @@ import android.accessibilityservice.GestureDescription
 import android.graphics.Path
 import android.os.Build
 import android.util.Log
+import android.view.accessibility.AccessibilityEvent
 import androidx.annotation.RequiresApi
 
 /**
@@ -23,6 +24,10 @@ class ScrollAccessibilityService : AccessibilityService() {
         super.onServiceConnected()
         currentInstance = this
         Log.i("ScrollSvc", "connected")
+    }
+
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
+        // No-op: gestures are triggered programmatically via performScroll
     }
 
     override fun onInterrupt() {}
